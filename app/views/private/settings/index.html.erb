@@ -1,0 +1,97 @@
+<% content_for :guide_title do %>
+  <h3 class="profile-email">
+    <i class="fa fa-user"></i><span><%= current_user.email %></span>
+  </h3>
+<% end %>
+
+<div class="settings-table" id="settings-list">
+    <div>
+        <div class="row-container settings-container first">
+            <div class="col-xs-2 icon-container">
+                <i class="fa fa-envelope-o fa-2x"></i>
+            </div>
+            <div class="col-xs-15 text-container">
+                <h4>E-mail verification</h4>
+                <span class="text-ignore">Verify your email</span>
+            </div>
+            <div class="col-xs-7 vertical-center check-button centered-container">
+                <% if current_user.level > 0 %>
+                    <a class="btn btn-success btn-block disabled" role="button">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Verified</span>
+                    </a>
+                <% else %>
+                    <a class="btn btn-default btn-block pending-task" href="/">Verify</a>
+                <% end %>
+            </div>
+        </div>
+        <div class="row-container settings-container">
+            <div class="col-xs-2 icon-container">
+                <i class="fa fa-phone fa-2x"></i>
+            </div>
+            <div class="col-xs-15 text-container">
+                <h4>Phone verification <i class ="fa fa-bolt"></i></h4>
+                <span class="text-ignore">Verify your phone</span>
+            </div>
+            <div class="col-xs-7 vertical-center check-button centered-container">
+                <% if current_user.level > 1 %>
+                    <a class="btn btn-success btn-block disabled" role="button">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Verified</span>
+                    </a>
+                <% else %>
+                    <a class="btn btn-default btn-block pending-task" href="/phones/new">Verify</a>
+                <% end %>
+            </div>
+        </div>
+        <div class="row-container settings-container">
+            <div class="col-xs-2 icon-container">
+                <i class="fa fa-id-badge fa-2x"></i>
+            </div>
+            <div class="col-xs-15 text-container">
+                <h4>Identity verification <i class ="fa fa-bolt"></i></h4>
+                <span class="text-ignore">Verify your identity</span>
+            </div>
+            <div class="col-xs-7 vertical-center check-button centered-container">
+                <% if current_user.level > 2 %>
+                    <a class="btn btn-success btn-block disabled" role="button">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Verified</span>
+                    </a>
+                <% else %>
+                    <a class="btn btn-default btn-block pending-task" href="/documents/new">Verify</a>
+                <% end %>
+            </div>
+        </div>
+        <div class="row-container settings-container">
+            <div class="col-xs-2 icon-container">
+                <i class="fa fa-key fa-2x"></i>
+            </div>
+            <div class="col-xs-15 text-container">
+                <h4>Password</h4>
+                <span class="text-ignore">Change your password</span>
+            </div>
+            <div class="col-xs-7 vertical-center check-button centered-container">
+                <a class="btn btn-default btn-block pending-task" href="/accounts/edit">Change Password</a>
+            </div>
+        </div>
+        <div class="row-container settings-container">
+        <div class="col-xs-2 icon-container">
+          <i class="fa fa-user-plus fa-2x"></i>
+        </div>
+        <div class="col-xs-15 text-container">
+          <h4>Referral Link</h4>
+          <span class="text-dark" id="referral_link"><%= current_user.referral_link %></span>
+        </div>
+        <div class="col-xs-7 vertical-center check-button centered-container">
+          <a class="btn btn-info btn-block text-dark" href="javascript:void(0);"
+             data-clipboard-action="copy" data-clipboard-target="#referral_link">Copy Link</a>
+        </div>
+      </div>
+    </div>
+</div>
+<% content_for :guide do %>
+  <% if current_user.admin? %>
+    <span class="badge badge-warning">ADMIN</span>
+  <% end %>
+<% end %>
